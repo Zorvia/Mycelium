@@ -15,13 +15,13 @@ Licensed under ZPL v2.0 — see LICENSE.md
 - [x] Run linter: `npm run lint`
 - [x] Run tests: `npm run test`
 - [x] Build production bundle: `npm run build`
-- [ ] Start local server: `npm run start`
-- [ ] Manual UI smoke test on `http://localhost:3000`
+- [x] Start local server: `npm run start`
+- [x] Manual UI smoke test on `http://localhost:3000`
 
 ## 2. Reader UX QA
 
 - [ ] Verify search and sort on homepage
-- [ ] Verify each story route opens and renders content correctly
+- [x] Verify each story route opens and renders content correctly
 - [ ] Verify font size controls persist per device
 - [ ] Verify line-length controls persist per device
 - [ ] Verify dark/light mode toggle persists per device
@@ -31,12 +31,12 @@ Licensed under ZPL v2.0 — see LICENSE.md
 
 ## 3. Review API QA
 
-- [ ] `GET /api/reviews?storyId=<id>&sort=newest` returns list + stats
-- [ ] `GET /api/reviews?storyId=<id>&sort=highest` sorts by rating desc
-- [ ] `POST /api/reviews` validates payload and creates review
-- [ ] Verify flagged/spam-like reviews are not shown in visible list
-- [ ] Verify rate-limit returns `429` when threshold exceeded
-- [ ] Verify `DELETE /api/reviews/:id` requires valid `x-admin-token`
+- [x] `GET /api/reviews?storyId=<id>&sort=newest` returns list + stats
+- [x] `GET /api/reviews?storyId=<id>&sort=highest` sorts by rating desc
+- [x] `POST /api/reviews` validates payload and creates review
+- [x] Verify flagged/spam-like reviews are not shown in visible list
+- [x] Verify rate-limit returns `429` when threshold exceeded
+- [x] Verify `DELETE /api/reviews/:id` requires valid `x-admin-token`
 
 ## 4. Upstash + Environment Setup
 
@@ -46,7 +46,7 @@ Licensed under ZPL v2.0 — see LICENSE.md
   - [ ] `UPSTASH_REDIS_REST_TOKEN`
   - [ ] `REVIEW_ADMIN_TOKEN`
   - [ ] `RATE_LIMIT_PER_MINUTE`
-- [ ] Confirm fallback mode works locally without Upstash vars (`data/reviews.json`)
+- [x] Confirm fallback mode works locally without Upstash vars (`data/reviews.json`)
 
 ## 5. Vercel Deployment
 
@@ -66,7 +66,7 @@ Licensed under ZPL v2.0 — see LICENSE.md
 ## 7. Repository Standards
 
 - [x] Confirm canonical header is present in all source files
-- [ ] Confirm `LICENSE.md` remains exact and unchanged
+- [x] Confirm `LICENSE.md` remains exact and unchanged
 - [x] Confirm `CHANGELOG.md` includes v1.0.0
 - [x] Confirm `RELEASE_NOTES_v1.0.0.md` matches release content
 
