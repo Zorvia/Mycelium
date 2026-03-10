@@ -12,6 +12,14 @@ import { initReader, openStory } from './reader.js';
 const THEME_KEY = 'eclipse-theme';
 const MANIFEST_PATH = 'stories/manifest.json';
 
+const state = {
+  stories: [],
+  filtered: [],
+  query: '',
+  tag: 'all',
+  sort: 'newest',
+};
+
 /** Apply saved theme or respect system preference */
 function initTheme() {
   const saved = localStorage.getItem(THEME_KEY);
@@ -32,7 +40,7 @@ function initTheme() {
 }
 
 /** Create a card element for a story */
-function createCard(story, index) {
+function createCard(story) {
   const li = document.createElement('li');
 
   const card = document.createElement('article');
@@ -63,6 +71,11 @@ function createCard(story, index) {
   author.textContent = story.author;
   info.appendChild(author);
 
+  const date = document.createElement('p');
+  date.className = 'card__date';
+  date.textContent = story.date || '';
+  info.appendChild(date);
+
   if (story.tags && story.tags.length) {
     const tags = document.createElement('div');
     tags.className = 'card__tags';
@@ -79,7 +92,7 @@ function createCard(story, index) {
   card.appendChild(info);
 
   // Interaction handlers
-  const activate = () => openStory(index, card);
+  const activate = () => openStory(story._index, card);
   card.addEventListener('click', activate);
   card.addEventListener('keydown', (e) => {
     if (e.key === 'Enter' || e.key === ' ') {
@@ -92,9 +105,116 @@ function createCard(story, index) {
   return li;
 }
 
+function sortStories(stories) {
+  const output = [...stories];
+  switch (state.sort) {
+    case 'oldest':
+      output.sort((a, b) => (a.date || '').localeCompare(b.date || ''));
+      break;
+    case 'title-asc':
+      output.sort((a, b) => (a.title || '').localeCompare(b.title || ''));
+      break;
+    case 'title-desc':
+      output.sort((a, b) => (b.title || '').localeCompare(a.title || ''));
+      break;
+    default:
+      output.sort((a, b) => (b.date || '').localeCompare(a.date || ''));
+      break;
+  }
+  return output;
+}
+
+function applyFilters() {
+  const q = state.query.trim().toLowerCase();
+  const filtered = state.stories.filter((story) => {
+    const haystack = [
+      story.title || '',
+      story.author || '',
+      ...(Array.isArray(story.tags) ? story.tags : []),
+    ].join(' ').toLowerCase();
+    const queryMatch = q.length === 0 || haystack.includes(q);
+    const tagMatch = state.tag === 'all' || (story.tags || []).includes(state.tag);
+    return queryMatch && tagMatch;
+  });
+  state.filtered = sortStories(filtered);
+}
+
+function updateResultsCount() {
+  const el = document.getElementById('result-count');
+  const total = state.stories.length;
+  const shown = state.filtered.length;
+  el.textContent = `${shown} of ${total} stories shown`;
+}
+
+function renderGrid() {
+  const grid = document.getElementById('library-grid');
+  const emptyMsg = document.getElementById('library-empty');
+
+  grid.innerHTML = '';
+  if (state.filtered.length === 0) {
+    emptyMsg.hidden = false;
+  } else {
+    emptyMsg.hidden = true;
+    const fragment = document.createDocumentFragment();
+    state.filtered.forEach((story) => fragment.appendChild(createCard(story)));
+    grid.appendChild(fragment);
+  }
+
+  updateResultsCount();
+}
+
+function renderTagFilters() {
+  const wrap = document.getElementById('tag-filters');
+  const tags = new Set();
+  state.stories.forEach((story) => (story.tags || []).forEach((tag) => tags.add(tag)));
+
+  const allTags = ['all', ...Array.from(tags).sort((a, b) => a.localeCompare(b))];
+  wrap.innerHTML = '';
+
+  for (const tag of allTags) {
+    const btn = document.createElement('button');
+    btn.type = 'button';
+    btn.className = 'chip-btn';
+    btn.textContent = tag;
+    btn.setAttribute('aria-pressed', String(state.tag === tag));
+    btn.addEventListener('click', () => {
+      state.tag = tag;
+      renderTagFilters();
+      applyFilters();
+      renderGrid();
+    });
+    wrap.appendChild(btn);
+  }
+}
+
+function initDiscoveryControls() {
+  const search = document.getElementById('library-search');
+  const clear = document.getElementById('search-clear');
+  const sort = document.getElementById('sort-select');
+
+  search.addEventListener('input', (e) => {
+    state.query = e.target.value || '';
+    applyFilters();
+    renderGrid();
+  });
+
+  clear.addEventListener('click', () => {
+    search.value = '';
+    state.query = '';
+    applyFilters();
+    renderGrid();
+    search.focus();
+  });
+
+  sort.addEventListener('change', (e) => {
+    state.sort = e.target.value || 'newest';
+    applyFilters();
+    renderGrid();
+  });
+}
+
 /** Load manifest and render the grid */
 async function loadLibrary() {
-  const grid = document.getElementById('library-grid');
   const emptyMsg = document.getElementById('library-empty');
 
   try {
@@ -107,11 +227,12 @@ async function loadLibrary() {
       return;
     }
 
-    initReader(stories);
-
-    const fragment = document.createDocumentFragment();
-    stories.forEach((story, i) => fragment.appendChild(createCard(story, i)));
-    grid.appendChild(fragment);
+    state.stories = stories.map((story, i) => ({ ...story, _index: i }));
+    initReader(state.stories);
+    initDiscoveryControls();
+    renderTagFilters();
+    applyFilters();
+    renderGrid();
   } catch {
     emptyMsg.hidden = false;
   }

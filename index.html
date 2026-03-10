@@ -36,11 +36,42 @@ See LICENSE.md for details
 
   <main id="main-content">
     <section aria-label="Story library">
+      <div class="library-tools" aria-label="Library tools">
+        <form class="search-wrap" role="search" aria-label="Search stories" onsubmit="return false;">
+          <label for="library-search" class="sr-only">Search by title, author, or tag</label>
+          <input
+            id="library-search"
+            class="search-input"
+            type="search"
+            placeholder="Search stories, authors, or tags"
+            autocomplete="off"
+          >
+          <button type="button" class="control-btn search-clear" id="search-clear" aria-label="Clear search">
+            Clear
+          </button>
+        </form>
+
+        <div class="library-meta-row">
+          <div class="filter-row" id="tag-filters" role="toolbar" aria-label="Filter stories by tag"></div>
+          <div class="sort-wrap">
+            <label for="sort-select">Sort</label>
+            <select id="sort-select" class="sort-select" aria-label="Sort stories">
+              <option value="newest">Newest</option>
+              <option value="oldest">Oldest</option>
+              <option value="title-asc">Title A-Z</option>
+              <option value="title-desc">Title Z-A</option>
+            </select>
+          </div>
+        </div>
+
+        <p class="result-count" id="result-count" aria-live="polite"></p>
+      </div>
+
       <ul id="library-grid" class="library-grid" role="list">
         <!-- Cards injected by app.js from stories/manifest.json -->
       </ul>
       <p id="library-empty" class="library-empty" hidden>
-        No stories found. Run <code>npm run build</code> to generate the story manifest.
+        No stories match your search yet. Try clearing filters or searching a different term.
       </p>
     </section>
   </main>
