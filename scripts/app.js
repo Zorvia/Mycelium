@@ -23,19 +23,33 @@ const state = {
 /** Apply saved theme or respect system preference */
 function initTheme() {
   const saved = localStorage.getItem(THEME_KEY);
-  if (saved === 'dark' || (!saved && matchMedia('(prefers-color-scheme: dark)').matches)) {
-    document.documentElement.setAttribute('data-theme', 'dark');
+  const root = document.documentElement;
+  const toggle = document.getElementById('theme-toggle');
+
+  // Dark-first experience unless user explicitly saved light mode.
+  if (saved === 'light') {
+    root.setAttribute('data-theme', 'light');
+  } else {
+    root.setAttribute('data-theme', 'dark');
   }
 
-  document.getElementById('theme-toggle').addEventListener('click', () => {
-    const isDark = document.documentElement.getAttribute('data-theme') === 'dark';
-    if (isDark) {
-      document.documentElement.removeAttribute('data-theme');
-      localStorage.setItem(THEME_KEY, 'light');
-    } else {
-      document.documentElement.setAttribute('data-theme', 'dark');
+  const updateToggleCopy = () => {
+    const isLight = root.getAttribute('data-theme') === 'light';
+    toggle.setAttribute('aria-label', isLight ? 'Switch to dark mode' : 'Switch to light mode');
+    toggle.setAttribute('title', isLight ? 'Switch to dark mode' : 'Switch to light mode');
+  };
+  updateToggleCopy();
+
+  toggle.addEventListener('click', () => {
+    const isLight = root.getAttribute('data-theme') === 'light';
+    if (isLight) {
+      root.setAttribute('data-theme', 'dark');
       localStorage.setItem(THEME_KEY, 'dark');
+    } else {
+      root.setAttribute('data-theme', 'light');
+      localStorage.setItem(THEME_KEY, 'light');
     }
+    updateToggleCopy();
   });
 }
 
