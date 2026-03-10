@@ -8,7 +8,7 @@ Licensed under ZPL v2.0 — see LICENSE.md
 "use client";
 
 import Link from "next/link";
-import { useEffect, useMemo, useRef, useState, type FormEvent } from "react";
+import { useEffect, useMemo, useRef, useState, useCallback, type FormEvent } from "react";
 import { useRouter } from "next/navigation";
 import type { Story } from "@/lib/stories";
 
@@ -85,17 +85,17 @@ export function StoryReader({ story, prevId, nextId }: Props) {
     return () => window.removeEventListener("scroll", onScroll);
   }, [story.id]);
 
-  async function loadReviews() {
+  const loadReviews = useCallback(async () => {
     const res = await fetch(`/api/reviews?storyId=${encodeURIComponent(story.id)}&sort=${sortReviews}`);
     const data = await res.json();
     setReviews(Array.isArray(data.reviews) ? data.reviews : []);
     setAvg(Number(data.stats?.avgRating || 0));
     setCount(Number(data.stats?.count || 0));
-  }
+  }, [story.id, sortReviews]);
 
   useEffect(() => {
     loadReviews();
-  }, [story.id, sortReviews]);
+  }, [loadReviews]);
 
   async function submitReview(formData: FormData) {
     setMessage("");

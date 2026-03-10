@@ -9,12 +9,12 @@ Licensed under ZPL v2.0 — see LICENSE.md
 
 ## 1. Local Verification (must pass)
 
-- [ ] Install dependencies: `npm ci`
-- [ ] Run header check: `npm run validate:headers`
-- [ ] Run story schema check: `npm run validate:stories`
-- [ ] Run linter: `npm run lint`
-- [ ] Run tests: `npm run test`
-- [ ] Build production bundle: `npm run build`
+- [x] Install dependencies: `npm ci` (equivalent completed via `npm install` due missing lockfile initially)
+- [x] Run header check: `npm run validate:headers`
+- [x] Run story schema check: `npm run validate:stories`
+- [x] Run linter: `npm run lint`
+- [x] Run tests: `npm run test`
+- [x] Build production bundle: `npm run build`
 - [ ] Start local server: `npm run start`
 - [ ] Manual UI smoke test on `http://localhost:3000`
 
@@ -65,10 +65,10 @@ Licensed under ZPL v2.0 — see LICENSE.md
 
 ## 7. Repository Standards
 
-- [ ] Confirm canonical header is present in all source files
+- [x] Confirm canonical header is present in all source files
 - [ ] Confirm `LICENSE.md` remains exact and unchanged
-- [ ] Confirm `CHANGELOG.md` includes v1.0.0
-- [ ] Confirm `RELEASE_NOTES_v1.0.0.md` matches release content
+- [x] Confirm `CHANGELOG.md` includes v1.0.0
+- [x] Confirm `RELEASE_NOTES_v1.0.0.md` matches release content
 
 ## 8. Release Completion
 
