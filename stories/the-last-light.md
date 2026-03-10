@@ -1,6 +1,6 @@
 <!--
 Project: Eclipse
-Owned by :contentReference[oaicite:2]{index=2}
+Owned by Zorvia
 All credits to the Zorvia Community
 Licensed under ZPL v2.0 — see LICENSE.md
 -->
@@ -48,8 +48,4 @@ She descended the spiral stairs, two hundred and twelve steps counting the crack
 She looked at the empty sea behind him. "What people?"
 
 He met her gaze. "The ones who haven't given up yet."
-
----
-
-*TODO: Replace this placeholder story with actual content. This is sample text for layout and reading-experience testing.*
 

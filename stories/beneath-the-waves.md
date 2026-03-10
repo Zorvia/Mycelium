@@ -1,6 +1,6 @@
 <!--
 Project: Eclipse
-Owned by :contentReference[oaicite:2]{index=2}
+Owned by Zorvia
 All credits to the Zorvia Community
 Licensed under ZPL v2.0 — see LICENSE.md
 -->
@@ -48,8 +48,4 @@ A desk sat in the center of the room. On it, a single book lay open. The page it
 Maren looked at the drawing. The drawing looked back.
 
 She sat down and began to read.
-
----
-
-*TODO: Replace this placeholder story with actual content. This is sample text for layout and reading-experience testing.*
 

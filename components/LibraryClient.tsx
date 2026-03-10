@@ -1,6 +1,6 @@
 /*
 Project: Eclipse
-Owned by :contentReference[oaicite:2]{index=2}
+Owned by Zorvia
 All credits to the Zorvia Community
 Licensed under ZPL v2.0 — see LICENSE.md
 */
@@ -62,7 +62,7 @@ export function LibraryClient({ stories }: Props) {
             <img className="card-cover" src={story.cover} alt={`Cover art for ${story.title}`} />
             <div className="card-body">
               <div className="card-title">{story.title}</div>
-              <div className="card-meta">{story.author} â€¢ {story.date}</div>
+              <div className="card-meta">{story.author} • {story.date}</div>
               <div>
                 {story.tags.map((tag) => (
                   <span className="tag" key={`${story.id}-${tag}`}>{tag}</span>

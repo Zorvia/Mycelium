@@ -1,6 +1,6 @@
 /*
 Project: Eclipse
-Owned by :contentReference[oaicite:2]{index=2}
+Owned by Zorvia
 All credits to the Zorvia Community
 Licensed under ZPL v2.0 — see LICENSE.md
 */
@@ -149,7 +149,7 @@ export function StoryReader({ story, prevId, nextId }: Props) {
       <div className="notice" aria-live="polite">Reading progress: {progress}%</div>
       <h1>{story.title}</h1>
       <div className="reader-meta">
-        {story.author} â€¢ {story.date} â€¢ {story.description}
+        {story.author} • {story.date} • {story.description}
       </div>
 
       <div className="reader-tools">
@@ -209,7 +209,7 @@ export function StoryReader({ story, prevId, nextId }: Props) {
           {reviews.map((r) => (
             <li className="review-item" key={r.id}>
               <div className="notice">
-                {"â˜…".repeat(r.rating)}{"â˜†".repeat(5 - r.rating)} by {r.reviewerName || "Anonymous"}
+                {"★".repeat(r.rating)}{"☆".repeat(5 - r.rating)} by {r.reviewerName || "Anonymous"}
               </div>
               <div>{r.body}</div>
               <div className="notice">{new Date(r.createdAt).toLocaleString()}</div>

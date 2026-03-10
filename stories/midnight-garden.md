@@ -1,6 +1,6 @@
 <!--
 Project: Eclipse
-Owned by :contentReference[oaicite:2]{index=2}
+Owned by Zorvia
 All credits to the Zorvia Community
 Licensed under ZPL v2.0 — see LICENSE.md
 -->
@@ -54,8 +54,4 @@ Luca looked at the roses. Each bloom, he now saw, contained a tiny scene — lik
 "It goes back to being concrete." She picked up her secateurs. "But the memories stay planted. They just wait for the next night."
 
 He visited the garden every night for a year. He never told anyone. Some doors, he understood, stay open only if you don't point at them.
-
----
-
-*TODO: Replace this placeholder story with actual content. This is sample text for layout and reading-experience testing.*
 

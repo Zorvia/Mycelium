@@ -1,6 +1,6 @@
 /*
 Project: Eclipse
-Owned by :contentReference[oaicite:2]{index=2}
+Owned by Zorvia
 All credits to the Zorvia Community
 Licensed under ZPL v2.0 — see LICENSE.md
 */
@@ -10,7 +10,7 @@ const path = require("node:path");
 
 const REQUIRED = [
   "Project: Eclipse",
-  "Owned by :contentReference[oaicite:2]{index=2}",
+  "Owned by Zorvia",
   "All credits to the Zorvia Community",
   "Licensed under ZPL v2.0",
 ];
