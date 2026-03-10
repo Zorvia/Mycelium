@@ -30,7 +30,7 @@ function walk(dir, out) {
 
     const ext = path.extname(name);
     if (!INCLUDE_EXT.has(ext)) continue;
-    if (name === "LICENSE.md") continue;
+    if (name === "LICENSE.md" || name === "next-env.d.ts") continue;
     out.push(full);
   }
 }
