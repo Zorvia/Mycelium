@@ -101,6 +101,41 @@ See LICENSE.md for details
         <article class="reader-content" id="reader-content">
           <!-- Story HTML injected here -->
         </article>
+
+        <section class="review-panel" aria-labelledby="reviews-heading">
+          <h2 id="reviews-heading" class="review-heading">Reader Reviews</h2>
+          <p class="review-subtitle">Saved on this device only.</p>
+
+          <form id="review-form" class="review-form">
+            <div class="review-fields">
+              <label for="review-rating">Rating</label>
+              <select id="review-rating" required>
+                <option value="">Select</option>
+                <option value="5">5 - Excellent</option>
+                <option value="4">4 - Great</option>
+                <option value="3">3 - Good</option>
+                <option value="2">2 - Fair</option>
+                <option value="1">1 - Poor</option>
+              </select>
+            </div>
+
+            <div class="review-fields">
+              <label for="review-comment">Comment</label>
+              <textarea
+                id="review-comment"
+                rows="3"
+                maxlength="500"
+                placeholder="Share your thoughts about this story"
+                required
+              ></textarea>
+            </div>
+
+            <button type="submit" class="reader-btn">Post Review</button>
+          </form>
+
+          <p id="review-summary" class="review-summary" aria-live="polite"></p>
+          <ul id="review-list" class="review-list" aria-label="Story reviews"></ul>
+        </section>
       </div>
 
       <nav class="reader-nav" aria-label="Story navigation">

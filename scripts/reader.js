@@ -8,6 +8,7 @@ See LICENSE.md for details
 
 /** Reader overlay — manages the modal, story rendering, and reading preferences. */
 const FONT_SIZE_KEY = 'eclipse-font-size';
+const REVIEW_KEY = 'eclipse-reviews';
 const FONT_STEP = 0.1;
 const FONT_MIN = 0.8;
 const FONT_MAX = 2.0;
@@ -25,12 +26,123 @@ const els = {
   next: null,
   fontUp: null,
   fontDown: null,
+  reviewForm: null,
+  reviewRating: null,
+  reviewComment: null,
+  reviewList: null,
+  reviewSummary: null,
 };
 
 let manifest = [];
 let currentIndex = -1;
 let returnFocusEl = null;
 let fontSize = DEFAULT_FONT;
+
+function loadReviews() {
+  const raw = localStorage.getItem(REVIEW_KEY);
+  if (!raw) return {};
+  try {
+    const parsed = JSON.parse(raw);
+    return typeof parsed === 'object' && parsed ? parsed : {};
+  } catch {
+    return {};
+  }
+}
+
+function saveReviews(map) {
+  localStorage.setItem(REVIEW_KEY, JSON.stringify(map));
+}
+
+function getStoryReviews(storyId) {
+  const map = loadReviews();
+  const list = map[storyId];
+  return Array.isArray(list) ? list : [];
+}
+
+function setStoryReviews(storyId, reviews) {
+  const map = loadReviews();
+  map[storyId] = reviews;
+  saveReviews(map);
+}
+
+function getAverageRating(reviews) {
+  if (reviews.length === 0) return null;
+  const total = reviews.reduce((sum, review) => sum + Number(review.rating || 0), 0);
+  return (total / reviews.length).toFixed(1);
+}
+
+function renderReviews() {
+  const story = manifest[currentIndex];
+  if (!story) return;
+
+  const reviews = getStoryReviews(story.id);
+  els.reviewList.innerHTML = '';
+
+  const average = getAverageRating(reviews);
+  els.reviewSummary.textContent = average
+    ? `${reviews.length} review(s) • Average rating ${average}/5`
+    : 'No reviews yet. Be the first to rate this story.';
+
+  reviews.forEach((review, idx) => {
+    const item = document.createElement('li');
+    item.className = 'review-item';
+
+    const meta = document.createElement('div');
+    meta.className = 'review-meta';
+
+    const stars = document.createElement('span');
+    stars.className = 'review-stars';
+    stars.textContent = `${'★'.repeat(Number(review.rating))}${'☆'.repeat(5 - Number(review.rating))}`;
+
+    const date = document.createElement('span');
+    date.className = 'review-date';
+    date.textContent = review.date || '';
+
+    meta.appendChild(stars);
+    meta.appendChild(date);
+
+    const text = document.createElement('p');
+    text.className = 'review-text';
+    text.textContent = review.comment;
+
+    const remove = document.createElement('button');
+    remove.type = 'button';
+    remove.className = 'reader-btn review-delete';
+    remove.textContent = 'Delete review';
+    remove.setAttribute('aria-label', `Delete review ${idx + 1}`);
+    remove.addEventListener('click', () => {
+      const next = getStoryReviews(story.id).filter((_, i) => i !== idx);
+      setStoryReviews(story.id, next);
+      renderReviews();
+    });
+
+    item.appendChild(meta);
+    item.appendChild(text);
+    item.appendChild(remove);
+    els.reviewList.appendChild(item);
+  });
+}
+
+function handleReviewSubmit(event) {
+  event.preventDefault();
+  const story = manifest[currentIndex];
+  if (!story) return;
+
+  const rating = Number(els.reviewRating.value);
+  const comment = els.reviewComment.value.trim();
+  if (!rating || !comment) return;
+
+  const reviews = getStoryReviews(story.id);
+  reviews.unshift({
+    rating,
+    comment,
+    date: new Date().toISOString().slice(0, 10),
+  });
+
+  setStoryReviews(story.id, reviews);
+  els.reviewForm.reset();
+  renderReviews();
+}
 
 /** Restore persisted font size */
 function loadFontSize() {
@@ -96,6 +208,7 @@ async function openStory(index, triggerEl) {
   }
 
   updateNav();
+  renderReviews();
   els.overlay.addEventListener('keydown', trapFocus);
   els.overlay.addEventListener('keydown', handleReaderKeys);
 }
@@ -137,6 +250,11 @@ export function initReader(storyManifest) {
   els.next = $('#reader-next');
   els.fontUp = $('#font-increase');
   els.fontDown = $('#font-decrease');
+  els.reviewForm = $('#review-form');
+  els.reviewRating = $('#review-rating');
+  els.reviewComment = $('#review-comment');
+  els.reviewList = $('#review-list');
+  els.reviewSummary = $('#review-summary');
 
   loadFontSize();
 
@@ -155,6 +273,8 @@ export function initReader(storyManifest) {
     applyFontSize();
     saveFontSize();
   });
+
+  els.reviewForm.addEventListener('submit', handleReviewSubmit);
 
   // Close on backdrop click
   els.overlay.addEventListener('click', (e) => {
