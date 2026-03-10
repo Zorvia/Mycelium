@@ -50,7 +50,7 @@ Licensed under ZPL v2.0 — see LICENSE.md
 
 ## 5. Vercel Deployment
 
-- [ ] Import `https://github.com/Zorvia/Eclipse.git` into Vercel
+- [ ] Import `https://github.com/Zorvia/Eclipse.git` into Vercel (blocked: Vercel CLI token invalid in current environment)
 - [ ] Confirm framework preset is Next.js
 - [ ] Confirm deployment succeeds from `main`
 - [ ] Smoke test live deployment routes and review API
@@ -72,7 +72,10 @@ Licensed under ZPL v2.0 — see LICENSE.md
 
 ## 8. Release Completion
 
-- [ ] Create GitHub Release from tag `v1.0.0`
-- [ ] Attach release notes and verification summary
+- [x] Create GitHub Release from tag `v1.0.0`
+- [x] Attach release notes and verification summary
 - [ ] Add screenshots (desktop + mobile)
 - [ ] Link live Vercel URL in release description
+
+Release URL:
+- `https://github.com/Zorvia/Eclipse/releases/tag/v1.0.0`
