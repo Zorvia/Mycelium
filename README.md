@@ -5,16 +5,194 @@ All credits to the Zorvia Community
 Licensed under ZPL v2.0 — see LICENSE.md
 -->
 
-# Eclipse v1.0.0
+<h1 align="center">Eclipse</h1>
 
-Production-ready, reader-first short-story library with persistent server-backed reviews and Vercel deployment. **All credits to the Zorvia Community.**
+<p align="center">
+A modern digital short-story library designed for immersive reading, elegant discovery, and community reviews.
+</p>
 
-## Repository
+<p align="center">
 
-- GitHub: `https://github.com/Zorvia/Eclipse.git`
-- Release target: `v1.0.0`
+![Vercel](https://img.shields.io/badge/deployed%20on-vercel-000000?style=for-the-badge\&logo=vercel)
+![Next.js](https://img.shields.io/badge/framework-next.js-000000?style=for-the-badge\&logo=nextdotjs)
+![TypeScript](https://img.shields.io/badge/language-typescript-3178C6?style=for-the-badge\&logo=typescript\&logoColor=white)
+![License](https://img.shields.io/badge/license-ZPL%20v2.0-black?style=for-the-badge)
 
-## Quick Start
+</p>
+
+<p align="center">
+
+**Live Platform**
+
+https://eclipselib.vercel.app
+
+</p>
+
+---
+
+# Architecture
+
+```mermaid
+flowchart LR
+
+User --> Browser
+Browser --> NextJS
+NextJS --> API
+API --> Redis
+NextJS --> Stories
+
+Stories[Markdown Story Files]
+Redis[(Upstash Redis Reviews)]
+
+```
+
+Eclipse is built using a modern **serverless architecture** designed for performance and scalability.
+
+Frontend rendering, API routes, and story rendering are unified through **Next.js** and deployed globally using **Vercel**.
+
+---
+
+# System Overview
+
+Eclipse provides a complete reading platform where users can:
+
+* browse a searchable story library
+* open an immersive reading interface
+* adjust typography and layout preferences
+* track reading progress
+* submit and browse reviews
+* discover stories through tags and filters
+
+The project focuses on **reader comfort, accessibility, and maintainability**.
+
+---
+
+# Feature Architecture
+
+```mermaid
+graph TD
+
+Library[Story Library]
+Reader[Reader Interface]
+Reviews[Review System]
+Stories[Markdown Stories]
+
+Library --> Reader
+Reader --> Reviews
+Stories --> Reader
+Reviews --> Redis
+
+Redis[(Review Database)]
+
+```
+
+---
+
+# Core Features
+
+## Story Library
+
+The homepage provides a responsive grid of stories.
+
+Capabilities include:
+
+* instant search
+* tag filtering
+* cover previews
+* sorting by newest or rating
+* featured story support
+
+---
+
+## Reader Interface
+
+The reader is optimized for long-form reading.
+
+Available controls include:
+
+* adjustable font size
+* narrow and wide reading widths
+* dark and light themes
+* reading progress indicator
+* automatic reading position saving
+* keyboard navigation
+* mobile swipe gestures
+
+Typography uses a tuned scale for optimal readability.
+
+---
+
+## Community Review System
+
+Each story includes a persistent review section.
+
+Users can:
+
+* submit 1–5 star ratings
+* write textual reviews
+* sort by newest or highest rated
+* view aggregated ratings and review counts
+
+---
+
+# API
+
+Retrieve reviews
+
+```
+GET /api/reviews?storyId=...&sort=newest|highest
+```
+
+Submit a review
+
+```
+POST /api/reviews
+```
+
+Delete a review
+
+```
+DELETE /api/reviews/:id
+```
+
+Admin deletion requires the `x-admin-token` header.
+
+Example:
+
+```bash
+curl -X DELETE https://eclipselib.vercel.app/api/reviews/REVIEW_ID \
+  -H "x-admin-token: YOUR_ADMIN_TOKEN"
+```
+
+---
+
+# Story Authoring
+
+Stories are written as **Markdown documents** stored in the repository.
+
+Example story structure:
+
+```yaml
+---
+id: "example-story"
+title: "Example Story"
+author: "Zorvia"
+date: "2026-03-10"
+cover: "assets/covers/example.svg"
+description: "Short description of the story."
+tags: ["fiction"]
+---
+
+Story content begins here.
+```
+
+Stories are placed in the `stories/` directory and rendered dynamically by the reader.
+
+---
+
+# Development
+
+Clone the repository and start the development server.
 
 ```bash
 git clone https://github.com/Zorvia/Eclipse.git
@@ -23,128 +201,88 @@ npm ci
 npm run dev
 ```
 
-Open `http://localhost:3000`. The homepage loads a searchable grid of stories. Click any cover to open the reader. Reviews are stored locally in `data/reviews.json` when Upstash is not configured.
+Open
 
-## Technical Decisions
+```
+http://localhost:3000
+```
 
-- TypeScript: enabled across frontend, API, and scripts.
-- Reviews persistence provider: Upstash Redis (production), file fallback (local development).
-- Review auth model: anonymous reviews with server-side moderation flagging and rate limiting.
-- Styling: handcrafted CSS variables for typographic rhythm and accessible theming.
-- Brand tokens: tasteful default neutral palette and open-source font stack (Inter, Source Serif 4).
-- Additional trademark names: none beyond ZPL v2.0 clauses.
-
-## Features
-
-- App Router Next.js architecture for Vercel.
-- Searchable and sortable story grid with cover art.
-- Reader page with:
-  - adjustable font size (A−/A+)
-  - line-length control (Narrow/Wide)
-  - dark/light theme toggle with persistence
-  - reading progress indicator
-  - per-story saved reading position (per device)
-  - swipe gestures (mobile) and keyboard navigation links
-- Persistent reviews with:
-  - `GET /api/reviews?storyId=...&sort=newest|highest` — returns reviews + stats
-  - `POST /api/reviews` — creates review (rate-limited)
-  - `DELETE /api/reviews/:id` — admin deletion (token required)
-  - average rating and count aggregation
-  - spam heuristics and content sanitization
-- Accessibility: focus management, ARIA roles, keyboard navigation, `prefers-reduced-motion` support, high-contrast light/dark themes.
-
-## Content Authoring Guide
-
-Add a new story by creating a Markdown file in `stories/`:
-
-```yaml
----
-id: "my-story"
-title: "My Story Title"
-author: "Zorvia"
-date: "2026-03-10"
-cover: "assets/covers/my-story.svg"
-description: "A brief synopsis of the story."
-tags: ["genre", "mood"]
 ---
 
-Your story content in Markdown format. Use headings, paragraphs,
-blockquotes, and emphasis as needed. The reader renders HTML from
-this Markdown automatically.
-```
-
-1. Place the `.md` file in `stories/`.
-2. Place the cover image (SVG recommended, 300×400) in `assets/covers/` **and** `public/assets/covers/`.
-3. Add the canonical header comment at the top of both files (see Headers section).
-4. Run `npm run validate:stories` to check frontmatter.
-
-## Review Moderation
-
-- **Anonymous posting** is allowed. Reviewers may optionally provide a name.
-- Reviews are checked for spam keywords; suspicious reviews are **flagged** and hidden from public listing.
-- Rate limiting is enforced per IP (configurable via `RATE_LIMIT_PER_MINUTE`, default: 6).
-- **Admin deletion**: send a `DELETE` request to `/api/reviews/:id` with the `x-admin-token` header set to the value of `REVIEW_ADMIN_TOKEN`.
-
-```bash
-# Example: delete a review
-curl -X DELETE https://your-domain.vercel.app/api/reviews/REVIEW_ID \
-  -H "x-admin-token: YOUR_ADMIN_TOKEN"
-```
-
-## Headers and License
-
-Every source file must begin with the canonical header:
+# Project Structure
 
 ```
-Project: Eclipse
-Owned by Zorvia
-All credits to the Zorvia Community
-Licensed under ZPL v2.0 — see LICENSE.md
+Eclipse
+│
+├─ app
+├─ components
+├─ stories
+├─ public
+├─ assets
+├─ api
+├─ data
+│
+├─ LICENSE.md
+├─ README.md
+└─ CHANGELOG.md
 ```
 
-Use language-appropriate comment syntax (e.g., `/* */` for TS/CSS, `<!-- -->` for HTML/MD, `#` for YAML). Verify with:
+---
 
-```bash
+# Environment Variables
+
+| Variable                 | Purpose                |
+| ------------------------ | ---------------------- |
+| UPSTASH_REDIS_REST_URL   | Redis endpoint         |
+| UPSTASH_REDIS_REST_TOKEN | Redis authentication   |
+| REVIEW_ADMIN_TOKEN       | Admin moderation token |
+| RATE_LIMIT_PER_MINUTE    | Review rate limiting   |
+
+If Redis is not configured, reviews fall back to local JSON storage.
+
+---
+
+# Continuous Integration
+
+Validation commands
+
+```
 npm run validate:headers
+npm run lint
+npm run test
+npm run build
 ```
 
-The license is in `LICENSE.md` (ZPL v2.0) and must remain unchanged. The ASCII Zorvia logo must be preserved verbatim.
+CI workflow
 
-## Environment Variables
-
-See `.env.example`:
-
-| Variable | Purpose | Required |
-|---|---|---|
-| `UPSTASH_REDIS_REST_URL` | Upstash Redis REST endpoint | Production |
-| `UPSTASH_REDIS_REST_TOKEN` | Upstash Redis auth token | Production |
-| `REVIEW_ADMIN_TOKEN` | Secret for admin review deletion | Recommended |
-| `RATE_LIMIT_PER_MINUTE` | Max review POSTs per IP per minute | Optional (default: 6) |
-
-If Upstash variables are missing, the API falls back to `data/reviews.json`.
-
-## Vercel Deployment
-
-1. Import `https://github.com/Zorvia/Eclipse.git` into Vercel.
-2. Framework preset: **Next.js**.
-3. Add environment variables from `.env.example` in the Vercel dashboard.
-4. Deploy. The site is served automatically on each push to `main`.
-
-Do **not** commit secrets or API keys to the repository.
-
-## CI and Verification
-
-```bash
-npm run validate:headers   # Header compliance
-npm run lint               # ESLint
-npm run test               # Vitest unit tests
-npm run build              # Next.js production build
+```
+.github/workflows/ci.yml
 ```
 
-GitHub Actions workflow: `.github/workflows/ci.yml` runs all checks on push to `main` and on PRs.
+---
 
-## License
+# Deployment
 
-Licensed under **ZPL v2.0** (Zorvia Public License). See [LICENSE.md](LICENSE.md) for the full text.
+The production deployment is hosted on **Vercel**.
 
-All credits to the **Zorvia Community**.
+```
+https://eclipselib.vercel.app
+```
+
+Every push to `main` triggers an automatic deployment.
+
+---
+
+# License
+
+This project is licensed under **ZPL v2.0**.
+
+See `LICENSE.md` for the full license text.
+
+---
+
+# Credits
+
+Owned by **Zorvia**
+
+All credits belong to the **Zorvia Community**
