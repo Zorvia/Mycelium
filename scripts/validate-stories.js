@@ -1,82 +1,44 @@
-#!/usr/bin/env node
-
 /*
 Project: Eclipse
-Owned by Zorvia
+Owned by :contentReference[oaicite:2]{index=2}
 All credits to the Zorvia Community
-Licensed under ZPL v2.0
-See LICENSE.md for details
+Licensed under ZPL v2.0 — see LICENSE.md
 */
 
-/**
- * validate-stories.js — Validates that all stories/*.md files
- * have the required frontmatter keys.
- *
- * Usage: node scripts/validate-stories.js
- * Exits with code 1 if any file is missing required keys.
- */
+const fs = require("node:fs");
+const path = require("node:path");
 
-import { readdir, readFile } from 'node:fs/promises';
-import { join, extname } from 'node:path';
-import { fileURLToPath } from 'node:url';
+const STORIES_DIR = path.join(process.cwd(), "stories");
+const REQUIRED = ["id", "title", "author", "date", "cover", "description"];
 
-const __filename = fileURLToPath(import.meta.url);
-const ROOT = join(__filename, '..', '..');
-const STORIES_DIR = join(ROOT, 'stories');
-const REQUIRED_KEYS = ['title', 'author', 'date', 'cover', 'id'];
-
-function parseFrontmatter(raw) {
-  const match = raw.match(/^\s*(?:<!--[\s\S]*?-->\s*)?---\r?\n([\s\S]*?)\r?\n---/);
-  if (!match) return null;
-
-  const meta = {};
-  for (const line of match[1].split(/\r?\n/)) {
-    const idx = line.indexOf(':');
-    if (idx === -1) continue;
-    const key = line.slice(0, idx).trim();
-    meta[key] = line.slice(idx + 1).trim();
-  }
-  return meta;
-}
-
-async function validate() {
-  const files = (await readdir(STORIES_DIR)).filter(f => extname(f) === '.md');
-
-  if (files.length === 0) {
-    console.error('❌ No .md files found in stories/');
-    process.exit(1);
-  }
-
-  let hasErrors = false;
-
-  for (const file of files) {
-    const raw = await readFile(join(STORIES_DIR, file), 'utf-8');
-    const meta = parseFrontmatter(raw);
-
-    if (!meta) {
-      console.error(`❌ ${file}: Missing frontmatter block (--- delimiters)`);
-      hasErrors = true;
-      continue;
-    }
-
-    const missing = REQUIRED_KEYS.filter(k => !meta[k]);
-    if (missing.length > 0) {
-      console.error(`❌ ${file}: Missing keys: ${missing.join(', ')}`);
-      hasErrors = true;
-    } else {
-      console.log(`✓ ${file}: OK`);
-    }
-  }
-
-  if (hasErrors) {
-    console.error('\nValidation failed.');
-    process.exit(1);
-  }
-
-  console.log(`\n✓ All ${files.length} stories are valid.`);
-}
-
-validate().catch((err) => {
-  console.error('Validation error:', err);
+const mdFiles = fs.readdirSync(STORIES_DIR).filter((f) => f.endsWith(".md"));
+if (mdFiles.length === 0) {
+  console.error("No markdown stories found.");
   process.exit(1);
-});
+}
+
+let failed = 0;
+for (const file of mdFiles) {
+  const full = path.join(STORIES_DIR, file);
+  const text = fs.readFileSync(full, "utf8");
+  const fm = text.match(/^\s*(?:<!--[\s\S]*?-->\s*)?---\r?\n([\s\S]*?)\r?\n---/);
+  if (!fm) {
+    failed += 1;
+    console.error(`Missing frontmatter: ${file}`);
+    continue;
+  }
+
+  const block = fm[1];
+  const missing = REQUIRED.filter((key) => !new RegExp(`^${key}:`, "m").test(block));
+  if (missing.length) {
+    failed += 1;
+    console.error(`Missing keys in ${file}: ${missing.join(", ")}`);
+  }
+}
+
+if (failed > 0) {
+  console.error(`\nStory validation failed for ${failed} file(s).`);
+  process.exit(1);
+}
+
+console.log(`Story validation passed for ${mdFiles.length} file(s).`);

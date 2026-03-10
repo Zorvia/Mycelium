@@ -1,9 +1,8 @@
 <!--
 Project: Eclipse
-Owned by Zorvia
+Owned by :contentReference[oaicite:2]{index=2}
 All credits to the Zorvia Community
-Licensed under ZPL v2.0
-See LICENSE.md for details
+Licensed under ZPL v2.0 — see LICENSE.md
 -->
 
 ## Description
@@ -22,7 +21,7 @@ See LICENSE.md for details
 
 ### Functionality
 - [ ] Grid loads with cover images and metadata
-- [ ] Tap/click a cover → reader overlay opens
+- [ ] Tap/click a cover â†’ reader overlay opens
 - [ ] Focus moves into modal on open
 - [ ] Story content renders and is legible
 - [ ] Esc key and close button close the modal
@@ -37,7 +36,7 @@ See LICENSE.md for details
 - [ ] Arrow keys navigate stories inside the reader
 - [ ] Skip-to-content link works
 - [ ] Screen reader announces modal role and story title
-- [ ] Touch targets are ≥ 44px on mobile
+- [ ] Touch targets are â‰¥ 44px on mobile
 
 ### Content Integrity
 - [ ] `npm run validate` exits with code 0
@@ -46,7 +45,7 @@ See LICENSE.md for details
 - [ ] `manifest.json` is up to date
 
 ### Accessibility & Performance (manual)
-- [ ] Lighthouse accessibility score ≥ 90
+- [ ] Lighthouse accessibility score â‰¥ 90
 - [ ] No critical contrast-ratio failures
 - [ ] `prefers-reduced-motion` disables animations
 
@@ -61,3 +60,4 @@ See LICENSE.md for details
 ### Deploy Link
 
 <!-- https://<username>.github.io/eclipse/ -->
+

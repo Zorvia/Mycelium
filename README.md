@@ -1,142 +1,115 @@
 <!--
 Project: Eclipse
-Owned by Zorvia
+Owned by :contentReference[oaicite:2]{index=2}
 All credits to the Zorvia Community
-Licensed under ZPL v2.0
-See LICENSE.md for details
+Licensed under ZPL v2.0 — see LICENSE.md
 -->
 
-# Eclipse
+# Eclipse v1.0.0
 
-Eclipse is a static digital library web app owned by Zorvia. It presents a grid of book covers and opens stories in an accessible reader overlay.
+Production-ready, reader-first short-story library with persistent server-backed reviews and Vercel deployment.
 
-All credits for this repository and project go to the Zorvia Community.
+## Repository
 
-## Stack
+- GitHub: `https://github.com/Zorvia/Eclipse.git`
+- Release target: `v1.0.0`
 
-- HTML5
-- CSS3
-- Vanilla JavaScript (ES modules)
-- Markdown story sources converted to static HTML fragments
+## Technical Decisions
 
-## Repository Layout
+- TypeScript: enabled
+- Reviews persistence provider: Upstash Redis (default), file fallback for local development
+- Review auth model: anonymous reviews with moderation flagging and rate limiting
+- Brand tokens: tasteful default neutral palette and open-source font stack
+- Additional trademark names: none beyond ZPL v2.0 clauses
 
-```text
-eclipse/
-|- index.html
-|- README.md
-|- LICENSE.md
-|- package.json
-|- styles/
-|  |- main.css
-|- scripts/
-|  |- app.js
-|  |- reader.js
-|  |- build.js
-|  |- validate-stories.js
-|- stories/
-|  |- *.md
-|  |- *.html (generated)
-|  |- manifest.json (generated)
-|- assets/
-|  |- covers/
-|     |- *.svg
-|- .github/
-|  |- PULL_REQUEST_TEMPLATE.md
-```
+## Features
 
-## Ownership And Attribution
+- App Router Next.js architecture for Vercel.
+- Searchable and sortable story grid.
+- Reader page with:
+  - adjustable font size
+  - line-length control
+  - dark/light theme toggle
+  - reading progress indicator
+  - per-story saved reading position
+  - swipe gestures (mobile) + keyboard navigation links
+- Persistent reviews with:
+  - `GET /api/reviews?storyId=...&sort=newest|highest`
+  - `POST /api/reviews`
+  - `DELETE /api/reviews/:id` (admin token required)
+  - stats: average rating + count
+  - basic anti-abuse: rate limiting and spam heuristics
 
-- Owned by: Zorvia
-- Credits: Zorvia Community
-- License: ZPL v2.0 (see `LICENSE.md`)
+## Headers And License
 
-## Local Development
-
-1. Install Node.js 18+.
-2. Install dependencies:
+- Every source file must include the canonical header block.
+- Verify with:
 
 ```bash
-npm install
+npm run validate:headers
 ```
 
-3. Validate story metadata:
+- License is in `LICENSE.md` and must remain unchanged.
 
-```bash
-npm run validate
-```
+## Story Content Model
 
-4. Build stories and manifest:
+Stories are stored in `stories/*.md` with YAML frontmatter:
 
-```bash
-npm run build
-```
-
-5. Preview locally:
-
-```bash
-npm run preview
-```
-
-Then open `http://localhost:8000`.
-
-## Story Authoring
-
-Add a markdown file in `stories/` with frontmatter:
-
-```markdown
-<!-- standard project header comment required -->
+```yaml
 ---
+id: "story-id"
 title: "Story Title"
 author: "Zorvia"
 date: "2026-03-10"
-cover: "assets/covers/story-title.svg"
-tags: ["tag-1", "tag-2"]
-id: "story-title"
+cover: "assets/covers/story-cover.svg"
+description: "Short summary"
+tags: ["genre", "mood"]
 ---
-
-Story body in Markdown.
 ```
 
-Run:
+## Local Development
 
 ```bash
-npm run validate
+npm ci
+npm run dev
+```
+
+Open `http://localhost:3000`.
+
+## Environment Variables
+
+See `.env.example`:
+
+- `UPSTASH_REDIS_REST_URL`
+- `UPSTASH_REDIS_REST_TOKEN`
+- `REVIEW_ADMIN_TOKEN`
+- `RATE_LIMIT_PER_MINUTE`
+
+If Upstash variables are missing, the API uses `data/reviews.json` local fallback.
+
+## CI And Verification
+
+```bash
+npm run validate:headers
+npm run lint
+npm run test
 npm run build
 ```
 
-This generates `stories/<slug>.html` and updates `stories/manifest.json`.
+GitHub Actions workflow: `.github/workflows/ci.yml`
 
-## Accessibility
+## Vercel Deployment
 
-- Keyboard support for cover cards (Tab, Enter, Space)
-- Accessible modal reader (`role="dialog"`, `aria-modal="true"`)
-- Focus moves into reader and returns to trigger on close
-- Escape closes reader
-- Mobile-friendly tap targets
+1. Import `https://github.com/Zorvia/Eclipse.git` into Vercel.
+2. Framework preset: Next.js.
+3. Add environment variables from `.env.example`.
+4. Deploy.
 
-## GitHub Pages Deployment
+## Moderation Notes
 
-1. Push repository to GitHub.
-2. Open repository **Settings** > **Pages**.
-3. Under **Build and deployment**, choose **Deploy from a branch**.
-4. Select branch `main` and folder `/ (root)`.
-5. Save. GitHub Pages will publish the site.
-6. Visit: `https://<username>.github.io/<repository>/`
+- Flagged reviews are stored but hidden from normal listing.
+- Admin deletion endpoint requires `x-admin-token` equal to `REVIEW_ADMIN_TOKEN`.
 
-If you use a custom domain, add a `CNAME` file at the repository root.
+## Release Notes
 
-## Verification Checklist
-
-1. `LICENSE.md` exists at repository root.
-2. Every source file begins with the standard project header comment.
-3. `npm run validate` exits with code 0.
-4. `npm run build` generates `.html` story files and `stories/manifest.json`.
-5. Home grid renders covers and titles.
-6. Click/tap on a cover opens readable story overlay.
-7. Keyboard navigation works (Tab, Enter/Space, Escape, Arrow keys).
-8. GitHub Pages serves the site after push.
-
-## License
-
-This repository is licensed under ZPL v2.0. The full and authoritative license text must remain unchanged in `LICENSE.md`.
+- See `CHANGELOG.md` for v1.0.0 summary.

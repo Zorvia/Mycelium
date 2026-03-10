@@ -2,14 +2,13 @@
 
 /*
 Project: Eclipse
-Owned by Zorvia
+Owned by :contentReference[oaicite:2]{index=2}
 All credits to the Zorvia Community
-Licensed under ZPL v2.0
-See LICENSE.md for details
+Licensed under ZPL v2.0 — see LICENSE.md
 */
 
 /**
- * build.js — Converts stories/*.md → stories/*.html (HTML fragments)
+ * build.js — Converts stories/*.md â†’ stories/*.html (HTML fragments)
  * and generates stories/manifest.json.
  *
  * Usage: node scripts/build.js
@@ -57,7 +56,7 @@ function parseFrontmatter(raw) {
 }
 
 async function build() {
-  console.log('Building stories…');
+  console.log('Building storiesâ€¦');
 
   const files = (await readdir(STORIES_DIR)).filter(f => extname(f) === '.md');
 
@@ -78,7 +77,7 @@ async function build() {
 
     const htmlFile = `${slug}.html`;
     await writeFile(join(STORIES_DIR, htmlFile), html, 'utf-8');
-    console.log(`  ✓ ${file} → ${htmlFile}`);
+    console.log(`  âœ“ ${file} â†’ ${htmlFile}`);
 
     manifest.push({
       id: meta.id || slug,
@@ -108,3 +107,4 @@ build().catch((err) => {
   console.error('Build failed:', err);
   process.exit(1);
 });
+

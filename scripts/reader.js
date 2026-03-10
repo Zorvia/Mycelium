@@ -1,9 +1,8 @@
 /*
 Project: Eclipse
-Owned by Zorvia
+Owned by :contentReference[oaicite:2]{index=2}
 All credits to the Zorvia Community
-Licensed under ZPL v2.0
-See LICENSE.md for details
+Licensed under ZPL v2.0 — see LICENSE.md
 */
 
 /** Reader overlay — manages the modal, story rendering, and reading preferences. */
@@ -80,7 +79,7 @@ function renderReviews() {
 
   const average = getAverageRating(reviews);
   els.reviewSummary.textContent = average
-    ? `${reviews.length} review(s) • Average rating ${average}/5`
+    ? `${reviews.length} review(s) â€¢ Average rating ${average}/5`
     : 'No reviews yet. Be the first to rate this story.';
 
   reviews.forEach((review, idx) => {
@@ -92,7 +91,7 @@ function renderReviews() {
 
     const stars = document.createElement('span');
     stars.className = 'review-stars';
-    stars.textContent = `${'★'.repeat(Number(review.rating))}${'☆'.repeat(5 - Number(review.rating))}`;
+    stars.textContent = `${'â˜…'.repeat(Number(review.rating))}${'â˜†'.repeat(5 - Number(review.rating))}`;
 
     const date = document.createElement('span');
     date.className = 'review-date';
@@ -190,7 +189,7 @@ async function openStory(index, triggerEl) {
   const story = manifest[index];
 
   els.title.textContent = story.title;
-  els.content.innerHTML = '<p>Loading…</p>';
+  els.content.innerHTML = '<p>Loadingâ€¦</p>';
 
   // Show overlay
   els.overlay.hidden = false;
@@ -283,3 +282,4 @@ export function initReader(storyManifest) {
 }
 
 export { openStory };
+

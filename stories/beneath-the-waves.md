@@ -1,9 +1,8 @@
 <!--
 Project: Eclipse
-Owned by Zorvia
+Owned by :contentReference[oaicite:2]{index=2}
 All credits to the Zorvia Community
-Licensed under ZPL v2.0
-See LICENSE.md for details
+Licensed under ZPL v2.0 — see LICENSE.md
 -->
 
 ---
@@ -11,6 +10,7 @@ title: "Beneath the Waves"
 author: "Zorvia"
 date: "2026-02-20"
 cover: "assets/covers/beneath-the-waves.svg"
+description: "A short story from the Eclipse library."
 tags: ["fantasy", "ocean"]
 id: "beneath-the-waves"
 ---
@@ -52,3 +52,4 @@ She sat down and began to read.
 ---
 
 *TODO: Replace this placeholder story with actual content. This is sample text for layout and reading-experience testing.*
+

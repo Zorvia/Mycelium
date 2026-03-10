@@ -1,9 +1,8 @@
 <!--
 Project: Eclipse
-Owned by Zorvia
+Owned by :contentReference[oaicite:2]{index=2}
 All credits to the Zorvia Community
-Licensed under ZPL v2.0
-See LICENSE.md for details
+Licensed under ZPL v2.0 — see LICENSE.md
 -->
 
 ---
@@ -11,6 +10,7 @@ title: "The Open Door"
 author: "Zorvia"
 date: "2026-03-10"
 cover: "assets/covers/the-open-door.svg"
+description: "A short story from the Eclipse library."
 tags: ["mystery", "suspense"]
 id: "the-open-door"
 ---
@@ -24,3 +24,4 @@ But today was different. As I gazed upon the rusty walls of the building, someth
 My foremost instinct was to run to the first person I could find and tell them. I ran to the mall, went to a shopkeeper, and told them. He didn't believe me. I decided to go home and tell my parents. I was an honest kid, so my parents decided to see for themselves. But they were sorely disappointed; the door had closed. They told me that lying was not a good thing, and went back home.
 
 I growled in frustration. I decided I would sneak out tonight and see if it was open. I was correct in my assumption. The door was open, and I felt like it was calling me. Slowly but steadily, I walked through the door and into the abandoned museum.
+

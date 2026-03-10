@@ -1,9 +1,8 @@
 <!--
 Project: Eclipse
-Owned by Zorvia
+Owned by :contentReference[oaicite:2]{index=2}
 All credits to the Zorvia Community
-Licensed under ZPL v2.0
-See LICENSE.md for details
+Licensed under ZPL v2.0 — see LICENSE.md
 -->
 
 ---
@@ -11,6 +10,7 @@ title: "The Last Light"
 author: "Zorvia"
 date: "2026-01-15"
 cover: "assets/covers/the-last-light.svg"
+description: "A short story from the Eclipse library."
 tags: ["science-fiction", "solitude"]
 id: "the-last-light"
 ---
@@ -52,3 +52,4 @@ He met her gaze. "The ones who haven't given up yet."
 ---
 
 *TODO: Replace this placeholder story with actual content. This is sample text for layout and reading-experience testing.*
+

@@ -1,9 +1,8 @@
 /*
 Project: Eclipse
-Owned by Zorvia
+Owned by :contentReference[oaicite:2]{index=2}
 All credits to the Zorvia Community
-Licensed under ZPL v2.0
-See LICENSE.md for details
+Licensed under ZPL v2.0 — see LICENSE.md
 */
 
 /** app.js — Main entry point for Eclipse library. */
@@ -257,3 +256,4 @@ document.addEventListener('DOMContentLoaded', () => {
   initTheme();
   loadLibrary();
 });
+

@@ -1,9 +1,8 @@
 <!--
 Project: Eclipse
-Owned by Zorvia
+Owned by :contentReference[oaicite:2]{index=2}
 All credits to the Zorvia Community
-Licensed under ZPL v2.0
-See LICENSE.md for details
+Licensed under ZPL v2.0 — see LICENSE.md
 -->
 
 ---
@@ -11,6 +10,7 @@ title: "The Shut Attic"
 author: "Zorvia"
 date: "2026-03-10"
 cover: "assets/covers/the-shut-attic.svg"
+description: "A short story from the Eclipse library."
 tags: ["horror", "mystery"]
 id: "the-shut-attic"
 ---
@@ -31,3 +31,4 @@ Well, that was it. In front of me, lying on a majestic marble pillar, was a box.
 The first part won. I moved my sweaty hands to the box and with a small force, opened the box.
 
 I left the attic instantly. The image was still clear in my mind. But one thing was certain. I could never forget those glowing, red, demonic eyes.
+
