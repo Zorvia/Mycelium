@@ -1,5 +1,17 @@
 [
   {
+    "id": "the-open-door",
+    "title": "The Open Door",
+    "author": "Zorvia",
+    "date": "2026-03-10",
+    "cover": "assets/covers/the-open-door.svg",
+    "tags": [
+      "mystery",
+      "suspense"
+    ],
+    "htmlPath": "stories/the-open-door.html"
+  },
+  {
     "id": "midnight-garden",
     "title": "The Midnight Garden",
     "author": "Zorvia",
