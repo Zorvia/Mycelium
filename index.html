@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<!--
+Project: Eclipse
+Owned by Zorvia
+All credits to the Zorvia Community
+Licensed under ZPL v2.0
+See LICENSE.md for details
+-->
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Eclipse — Digital Library</title>
+  <meta name="description" content="A small digital library of short stories.">
+  <link rel="stylesheet" href="styles/main.css">
+</head>
+<body>
+  <a href="#library-grid" class="skip-link">Skip to content</a>
+
+  <header class="site-header" role="banner">
+    <h1 class="site-title">Eclipse</h1>
+    <p class="site-subtitle">A digital library by Zorvia</p>
+    <nav class="site-controls" aria-label="Site controls">
+      <button
+        type="button"
+        class="control-btn"
+        id="theme-toggle"
+        aria-label="Toggle dark mode"
+        title="Toggle dark mode"
+      >
+        <span class="icon-sun" aria-hidden="true">☀️</span>
+        <span class="icon-moon" aria-hidden="true">🌙</span>
+      </button>
+    </nav>
+  </header>
+
+  <main id="main-content">
+    <section aria-label="Story library">
+      <ul id="library-grid" class="library-grid" role="list">
+        <!-- Cards injected by app.js from stories/manifest.json -->
+      </ul>
+      <p id="library-empty" class="library-empty" hidden>
+        No stories found. Run <code>npm run build</code> to generate the story manifest.
+      </p>
+    </section>
+  </main>
+
+  <!-- Reader overlay (modal) -->
+  <div
+    id="reader-overlay"
+    class="reader-overlay"
+    role="dialog"
+    aria-modal="true"
+    aria-label="Story reader"
+    hidden
+  >
+    <div class="reader-chrome">
+      <div class="reader-toolbar">
+        <button type="button" class="reader-btn" id="reader-close" aria-label="Close reader">
+          <span aria-hidden="true">&times;</span>
+        </button>
+        <span class="reader-title" id="reader-title"></span>
+        <div class="reader-controls">
+          <button type="button" class="reader-btn" id="font-decrease" aria-label="Decrease font size">A−</button>
+          <button type="button" class="reader-btn" id="font-increase" aria-label="Increase font size">A+</button>
+        </div>
+      </div>
+
+      <div class="reader-body" id="reader-body" tabindex="-1">
+        <article class="reader-content" id="reader-content">
+          <!-- Story HTML injected here -->
+        </article>
+      </div>
+
+      <nav class="reader-nav" aria-label="Story navigation">
+        <button type="button" class="reader-btn reader-nav-btn" id="reader-prev" aria-label="Previous story">
+          ← Previous
+        </button>
+        <button type="button" class="reader-btn reader-nav-btn" id="reader-next" aria-label="Next story">
+          Next →
+        </button>
+      </nav>
+    </div>
+  </div>
+
+  <footer class="site-footer" role="contentinfo">
+    <p>&copy; 2026 Zorvia. All credits to the Zorvia Community.</p>
+  </footer>
+
+  <script type="module" src="scripts/app.js"></script>
+</body>
+</html>
