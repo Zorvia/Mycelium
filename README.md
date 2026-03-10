@@ -1,4 +1,4 @@
-﻿<!--
+<!--
 Project: Eclipse
 Owned by Zorvia
 All credits to the Zorvia Community
