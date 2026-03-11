@@ -25,8 +25,12 @@ class FileReviewStore implements ReviewStore {
   }
 
   async writeAll(reviews: Review[]): Promise<void> {
-    await fs.mkdir(path.dirname(FILE_PATH), { recursive: true });
-    await fs.writeFile(FILE_PATH, JSON.stringify(reviews, null, 2), "utf8");
+    try {
+      await fs.mkdir(path.dirname(FILE_PATH), { recursive: true });
+      await fs.writeFile(FILE_PATH, JSON.stringify(reviews, null, 2), "utf8");
+    } catch {
+      throw new Error("Cannot write reviews. Configure UPSTASH_REDIS_REST_URL and UPSTASH_REDIS_REST_TOKEN for persistent storage.");
+    }
   }
 
   async saveReview(review: Review): Promise<void> {

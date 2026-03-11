@@ -61,7 +61,12 @@ export async function POST(req: NextRequest) {
   };
 
   const store = getReviewStore();
-  await store.saveReview(review);
+  try {
+    await store.saveReview(review);
+  } catch (e: unknown) {
+    const msg = e instanceof Error ? e.message : "Failed to save review";
+    return NextResponse.json({ error: msg }, { status: 500 });
+  }
 
   return NextResponse.json({ review }, { status: 201 });
 }

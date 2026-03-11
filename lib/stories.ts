@@ -30,7 +30,8 @@ export async function getAllStories(): Promise<Story[]> {
   const stories = await Promise.all(
     mdFiles.map(async (file) => {
       const raw = await fs.readFile(path.join(STORIES_DIR, file), "utf8");
-      const { data, content } = matter(raw);
+      const cleaned = raw.replace(/^<!--[\s\S]*?-->\s*/, "");
+      const { data, content } = matter(cleaned);
       return {
         id: String(data.id ?? file.replace(/\.md$/, "")),
         title: String(data.title ?? "Untitled"),
