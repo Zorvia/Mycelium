@@ -24,7 +24,7 @@ A modern digital short-story library designed for immersive reading, elegant dis
 
 **Live Platform**
 
-https://eclipselib.vercel.app
+https://myceliumlib.vercel.app
 
 </p>
 
@@ -160,7 +160,7 @@ Admin deletion requires the `x-admin-token` header.
 Example:
 
 ```bash
-curl -X DELETE https://eclipselib.vercel.app/api/reviews/REVIEW_ID \
+curl -X DELETE https://myceliumlib.vercel.app/api/reviews/REVIEW_ID \
   -H "x-admin-token: YOUR_ADMIN_TOKEN"
 ```
 
@@ -266,7 +266,7 @@ CI workflow
 The production deployment is hosted on **Vercel**.
 
 ```
-https://eclipselib.vercel.app
+https://myceliumlib.vercel.app
 ```
 
 Every push to `main` triggers an automatic deployment.
