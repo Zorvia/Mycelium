@@ -1,13 +1,13 @@
 /*
-Project: Eclipse
+Project: Mycelium
 Owned by Zorvia
 All credits to the Zorvia Community
 Licensed under ZPL v2.0 — see LICENSE.md
 */
 
 /** Reader overlay — manages the modal, story rendering, and reading preferences. */
-const FONT_SIZE_KEY = 'eclipse-font-size';
-const REVIEW_KEY = 'eclipse-reviews';
+const FONT_SIZE_KEY = 'mycelium-font-size';
+const REVIEW_KEY = 'mycelium-reviews';
 const FONT_STEP = 0.1;
 const FONT_MIN = 0.8;
 const FONT_MAX = 2.0;

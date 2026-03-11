@@ -1,11 +1,11 @@
 <!--
-Project: Eclipse
+Project: Mycelium
 Owned by Zorvia
 All credits to the Zorvia Community
 Licensed under ZPL v2.0 — see LICENSE.md
 -->
 
-# TODO - Eclipse v1.0.0 Completion Checklist
+# TODO - Mycelium v1.0.0 Completion Checklist
 
 ## 1. Local Verification (must pass)
 
@@ -50,7 +50,7 @@ Licensed under ZPL v2.0 — see LICENSE.md
 
 ## 5. Vercel Deployment
 
-- [ ] Import `https://github.com/Zorvia/Eclipse.git` into Vercel (blocked: Vercel CLI token invalid in current environment)
+- [ ] Import `https://github.com/Zorvia/Mycelium.git` into Vercel (blocked: Vercel CLI token invalid in current environment)
 - [ ] Confirm framework preset is Next.js
 - [ ] Confirm deployment succeeds from `main`
 - [ ] Smoke test live deployment routes and review API
@@ -78,4 +78,4 @@ Licensed under ZPL v2.0 — see LICENSE.md
 - [ ] Link live Vercel URL in release description
 
 Release URL:
-- `https://github.com/Zorvia/Eclipse/releases/tag/v1.0.0`
+- `https://github.com/Zorvia/Mycelium/releases/tag/v1.0.0`

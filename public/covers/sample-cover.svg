@@ -1,5 +1,5 @@
 <!--
-Project: Eclipse
+Project: Mycelium
 Owned by Zorvia
 All credits to the Zorvia Community
 Licensed under ZPL v2.0 — see LICENSE.md
@@ -12,6 +12,6 @@ Licensed under ZPL v2.0 — see LICENSE.md
     </linearGradient>
   </defs>
   <rect width="600" height="800" fill="url(#g)" rx="20"/>
-  <text x="300" y="360" text-anchor="middle" fill="#f3eef8" font-size="58" font-family="Georgia, serif">Eclipse</text>
+  <text x="300" y="360" text-anchor="middle" fill="#f3eef8" font-size="58" font-family="Georgia, serif">Mycelium</text>
   <text x="300" y="430" text-anchor="middle" fill="#b9b0cc" font-size="28" font-family="Arial, sans-serif">Sample Cover</text>
 </svg>

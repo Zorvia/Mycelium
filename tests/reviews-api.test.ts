@@ -1,5 +1,5 @@
 /*
-Project: Eclipse
+Project: Mycelium
 Owned by Zorvia
 All credits to the Zorvia Community
 Licensed under ZPL v2.0 — see LICENSE.md

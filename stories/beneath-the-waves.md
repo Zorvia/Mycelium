@@ -1,5 +1,5 @@
 <!--
-Project: Eclipse
+Project: Mycelium
 Owned by Zorvia
 All credits to the Zorvia Community
 Licensed under ZPL v2.0 — see LICENSE.md
@@ -10,7 +10,7 @@ title: "Beneath the Waves"
 author: "Zorvia"
 date: "2026-02-20"
 cover: "assets/covers/beneath-the-waves.svg"
-description: "A short story from the Eclipse library."
+description: "A short story from the Mycelium library."
 tags: ["fantasy", "ocean"]
 id: "beneath-the-waves"
 ---

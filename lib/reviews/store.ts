@@ -1,5 +1,5 @@
 /*
-Project: Eclipse
+Project: Mycelium
 Owned by Zorvia
 All credits to the Zorvia Community
 Licensed under ZPL v2.0 — see LICENSE.md
@@ -11,7 +11,7 @@ import { Redis } from "@upstash/redis";
 import type { Review, ReviewStore } from "@/lib/reviews/types";
 
 const FILE_PATH = path.join(process.cwd(), "data", "reviews.json");
-const STORE_KEY = "eclipse:reviews";
+const STORE_KEY = "mycelium:reviews";
 
 class FileReviewStore implements ReviewStore {
   async readAll(): Promise<Review[]> {

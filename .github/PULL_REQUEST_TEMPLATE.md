@@ -1,5 +1,5 @@
 <!--
-Project: Eclipse
+Project: Mycelium
 Owned by Zorvia
 All credits to the Zorvia Community
 Licensed under ZPL v2.0 — see LICENSE.md
@@ -59,5 +59,5 @@ Licensed under ZPL v2.0 — see LICENSE.md
 
 ### Deploy Link
 
-<!-- https://<username>.github.io/eclipse/ -->
+<!-- https://<username>.github.io/mycelium/ -->
 

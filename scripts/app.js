@@ -1,14 +1,14 @@
 /*
-Project: Eclipse
+Project: Mycelium
 Owned by Zorvia
 All credits to the Zorvia Community
 Licensed under ZPL v2.0 — see LICENSE.md
 */
 
-/** app.js — Main entry point for Eclipse library. */
+/** app.js — Main entry point for Mycelium library. */
 import { initReader, openStory } from './reader.js';
 
-const THEME_KEY = 'eclipse-theme';
+const THEME_KEY = 'mycelium-theme';
 const MANIFEST_PATH = 'stories/manifest.json';
 
 const state = {

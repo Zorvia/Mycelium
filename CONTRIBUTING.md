@@ -1,5 +1,5 @@
 <!--
-Project: Eclipse
+Project: Mycelium
 Owned by Zorvia
 All credits to the Zorvia Community
 Licensed under ZPL v2.0 — see LICENSE.md
@@ -14,7 +14,7 @@ All credits to the **Zorvia Community**. Contributions are welcome under the ter
 Every source file must start with this exact canonical header (language-appropriate comment syntax):
 
 ```text
-Project: Eclipse
+Project: Mycelium
 Owned by Zorvia
 All credits to the Zorvia Community
 Licensed under ZPL v2.0 — see LICENSE.md

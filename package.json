@@ -1,14 +1,15 @@
 {
-  "name": "eclipse",
+  "name": "mycelium",
   "version": "1.0.0",
   "private": true,
-  "description": "Eclipse v1.0.0 - reader-first short story library with server-backed reviews.",
+  "description": "Mycelium v1.0.0 - reader-first short story library with server-backed reviews and DeepSeek R1 AI.",
   "scripts": {
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
     "test": "vitest run",
+    "ai": "python scripts/deepseek-server.py",
     "validate:headers": "node scripts/validate-headers.js",
     "validate:stories": "node scripts/validate-stories.js",
     "check": "npm run validate:headers && npm run lint && npm run test && npm run build"

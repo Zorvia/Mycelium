@@ -1,14 +1,14 @@
 <!--
-Project: Eclipse
+Project: Mycelium
 Owned by Zorvia
 All credits to the Zorvia Community
 Licensed under ZPL v2.0 — see LICENSE.md
 -->
 
-<h1 align="center">Eclipse</h1>
+<h1 align="center">Mycelium</h1>
 
 <p align="center">
-A modern digital short-story library designed for immersive reading, elegant discovery, and community reviews.
+A modern digital short-story library designed for immersive reading, elegant discovery, community reviews, and DeepSeek R1 AI.
 </p>
 
 <p align="center">
@@ -46,7 +46,7 @@ Redis[(Upstash Redis Reviews)]
 
 ```
 
-Eclipse is built using a modern **serverless architecture** designed for performance and scalability.
+Mycelium is built using a modern **serverless architecture** designed for performance and scalability.
 
 Frontend rendering, API routes, and story rendering are unified through **Next.js** and deployed globally using **Vercel**.
 
@@ -54,7 +54,7 @@ Frontend rendering, API routes, and story rendering are unified through **Next.j
 
 # System Overview
 
-Eclipse provides a complete reading platform where users can:
+Mycelium provides a complete reading platform where users can:
 
 * browse a searchable story library
 * open an immersive reading interface
@@ -195,8 +195,8 @@ Stories are placed in the `stories/` directory and rendered dynamically by the r
 Clone the repository and start the development server.
 
 ```bash
-git clone https://github.com/Zorvia/Eclipse.git
-cd Eclipse
+git clone https://github.com/Zorvia/Mycelium.git
+cd Mycelium
 npm ci
 npm run dev
 ```
@@ -212,7 +212,7 @@ http://localhost:3000
 # Project Structure
 
 ```
-Eclipse
+Mycelium
 │
 ├─ app
 ├─ components

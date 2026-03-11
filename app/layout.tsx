@@ -1,5 +1,5 @@
 /*
-Project: Eclipse
+Project: Mycelium
 Owned by Zorvia
 All credits to the Zorvia Community
 Licensed under ZPL v2.0 — see LICENSE.md
@@ -23,7 +23,7 @@ const sourceSerif = Source_Serif_4({
 });
 
 export const metadata: Metadata = {
-  title: "Eclipse v1.0.0",
+  title: "Mycelium v1.0.0",
   description: "Reader-first short story library with community reviews.",
 };
 

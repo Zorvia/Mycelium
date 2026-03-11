@@ -1,5 +1,5 @@
 /*
-Project: Eclipse
+Project: Mycelium
 Owned by Zorvia
 All credits to the Zorvia Community
 Licensed under ZPL v2.0 — see LICENSE.md
@@ -11,6 +11,7 @@ import Link from "next/link";
 import { useEffect, useMemo, useRef, useState, useCallback, type FormEvent } from "react";
 import { useRouter } from "next/navigation";
 import type { Story } from "@/lib/stories";
+import { AIChat } from "@/components/AIChat";
 
 type Review = {
   id: string;
@@ -144,6 +145,12 @@ export function StoryReader({ story, prevId, nextId }: Props) {
     if (delta > 0 && prevId) router.push(`/story/${prevId}`);
   }
 
+  const storyPlainText = useMemo(() => {
+    const tmp = document.createElement("div");
+    tmp.innerHTML = story.html;
+    return tmp.textContent ?? "";
+  }, [story.html]);
+
   return (
     <article className="panel reader" ref={readerRef as never} onTouchStart={onTouchStart} onTouchEnd={onTouchEnd}>
       <div className="notice" aria-live="polite">Reading progress: {progress}%</div>
@@ -177,6 +184,10 @@ export function StoryReader({ story, prevId, nextId }: Props) {
         style={{ ["--reader-size" as string]: readerSize, ["--measure" as string]: `${measure}ch` }}
         dangerouslySetInnerHTML={{ __html: story.html }}
       />
+
+      <hr style={{ borderColor: "var(--border)", margin: "1.2rem 0" }} />
+
+      <AIChat storyTitle={story.title} storyText={storyPlainText} />
 
       <hr style={{ borderColor: "var(--border)", margin: "1.2rem 0" }} />
 

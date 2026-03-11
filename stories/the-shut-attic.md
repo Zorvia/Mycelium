@@ -1,5 +1,5 @@
 <!--
-Project: Eclipse
+Project: Mycelium
 Owned by Zorvia
 All credits to the Zorvia Community
 Licensed under ZPL v2.0 — see LICENSE.md
@@ -10,7 +10,7 @@ title: "The Shut Attic"
 author: "Zorvia"
 date: "2026-03-10"
 cover: "assets/covers/the-shut-attic.svg"
-description: "A short story from the Eclipse library."
+description: "A short story from the Mycelium library."
 tags: ["horror", "mystery"]
 id: "the-shut-attic"
 ---

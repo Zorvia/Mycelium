@@ -1,5 +1,5 @@
 <!--
-Project: Eclipse
+Project: Mycelium
 Owned by Zorvia
 All credits to the Zorvia Community
 Licensed under ZPL v2.0 — see LICENSE.md
@@ -10,7 +10,7 @@ title: "The Last Light"
 author: "Zorvia"
 date: "2026-01-15"
 cover: "assets/covers/the-last-light.svg"
-description: "A short story from the Eclipse library."
+description: "A short story from the Mycelium library."
 tags: ["science-fiction", "solitude"]
 id: "the-last-light"
 ---

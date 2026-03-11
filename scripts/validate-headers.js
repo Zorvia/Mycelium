@@ -1,5 +1,5 @@
 /*
-Project: Eclipse
+Project: Mycelium
 Owned by Zorvia
 All credits to the Zorvia Community
 Licensed under ZPL v2.0 — see LICENSE.md
@@ -9,7 +9,7 @@ const fs = require("node:fs");
 const path = require("node:path");
 
 const REQUIRED = [
-  "Project: Eclipse",
+  "Project: Mycelium",
   "Owned by Zorvia",
   "All credits to the Zorvia Community",
   "Licensed under ZPL v2.0",

@@ -1,11 +1,11 @@
 <!--
-Project: Eclipse
+Project: Mycelium
 Owned by Zorvia
 All credits to the Zorvia Community
 Licensed under ZPL v2.0 — see LICENSE.md
 -->
 
-# Eclipse v1.0.0 Release Notes
+# Mycelium v1.0.0 Release Notes
 
 **Release Date:** 2026-03-10
 **All credits to the Zorvia Community**

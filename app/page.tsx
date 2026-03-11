@@ -1,5 +1,5 @@
 /*
-Project: Eclipse
+Project: Mycelium
 Owned by Zorvia
 All credits to the Zorvia Community
 Licensed under ZPL v2.0 — see LICENSE.md
@@ -14,7 +14,7 @@ export default async function HomePage() {
   return (
     <main className="shell">
       <header className="topbar">
-        <div className="brand">Eclipse</div>
+        <div className="brand">Mycelium</div>
         <div className="notice">v1.0.0</div>
       </header>
 
