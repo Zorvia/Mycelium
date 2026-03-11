@@ -146,9 +146,7 @@ export function StoryReader({ story, prevId, nextId }: Props) {
   }
 
   const storyPlainText = useMemo(() => {
-    const tmp = document.createElement("div");
-    tmp.innerHTML = story.html;
-    return tmp.textContent ?? "";
+    return story.html.replace(/<[^>]*>/g, "");
   }, [story.html]);
 
   return (
